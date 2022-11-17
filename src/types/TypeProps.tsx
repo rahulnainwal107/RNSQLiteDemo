@@ -1,3 +1,5 @@
+import {RouteProp} from '@react-navigation/native';
+
 export type AddIconProps = {
   onPress: () => void;
 };
@@ -5,7 +7,7 @@ export type AddIconProps = {
 export type TaskListItemProps = {
   item: TaskProps;
   onPressUpdate: () => void;
-  onPressDelete: () => void;
+  onPressDelete: (id: number) => void;
 };
 
 export type TaskProps = {
@@ -16,6 +18,8 @@ export type TaskProps = {
 };
 
 export type AddUpdateTaskFormProps = {
+  title: string;
+  description: string;
   task: string;
   onButtonPress: (inputValue: TaskProps) => void;
 };

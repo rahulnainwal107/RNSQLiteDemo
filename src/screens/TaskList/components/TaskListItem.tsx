@@ -8,7 +8,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   onPressUpdate,
   onPressDelete,
 }) => {
-  const {date, title, description} = item;
+  const {id, date, title, description} = item;
   return (
     <View style={styles.mainContainer}>
       <View style={{padding: 10}}>
@@ -20,7 +20,9 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
         <TouchableOpacity style={styles.button1} onPress={onPressUpdate}>
           <Text style={styles.buttonTextStyle}>Update</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button2} onPress={onPressDelete}>
+        <TouchableOpacity
+          style={styles.button2}
+          onPress={onPressDelete.bind(this, id)}>
           <Text style={styles.buttonTextStyle}>Delete</Text>
         </TouchableOpacity>
       </View>

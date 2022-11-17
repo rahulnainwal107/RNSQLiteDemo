@@ -10,14 +10,16 @@ import {
 import {AddUpdateTaskFormProps, TaskProps} from '../types/TypeProps';
 
 const AddUpdateTaskForm: React.FC<AddUpdateTaskFormProps> = ({
+  title,
+  description,
   task,
   onButtonPress,
 }) => {
   const [taskInfo, setTaskInfo] = useState<TaskProps>({
     id: '',
     date: new Date(),
-    title: '',
-    description: '',
+    title: title,
+    description: description,
   });
 
   const onChangeText = (text: string, textFor: string): void => {
@@ -27,7 +29,7 @@ const AddUpdateTaskForm: React.FC<AddUpdateTaskFormProps> = ({
       setTaskInfo({...taskInfo, description: text, date: new Date()});
     }
   };
-  console.log('taskInfo ', taskInfo);
+
   return (
     <View>
       <TextInput

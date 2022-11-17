@@ -28,7 +28,14 @@ const AddTaskContainer = () => {
     }
   };
 
-  return <AddUpdateTaskForm task="add" onButtonPress={onAddPress} />;
+  return (
+    <AddUpdateTaskForm
+      title=""
+      description=""
+      task="add"
+      onButtonPress={onAddPress}
+    />
+  );
 };
 
 export default AddTaskContainer;

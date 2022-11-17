@@ -49,13 +49,21 @@ export const saveTaskItems = async (
   taskItems: TaskProps,
 ) => {
   const insertQuery =
-    `INSERT OR REPLACE INTO ${tableName}( date, title, description) values` +
+    `INSERT INTO ${tableName}( date, title, description) values` +
     `('${taskItems.date}', '${taskItems.title}', '${taskItems.description}')`;
   return db.executeSql(insertQuery);
 };
 
-export const deletetaskItem = async (db: SQLiteDatabase, id: number) => {
-  const deleteQuery = `DELETE from ${tableName} where rowid = ${id}`;
+export const updateTaskItems = async (
+  db: SQLiteDatabase,
+  taskItems: TaskProps,
+) => {
+  const insertQuery = `UPDATE ${tableName} SET date = '${taskItems.date}', title = '${taskItems.title}', description = '${taskItems.description}' WHERE id = '${taskItems.id}'`;
+  return db.executeSql(insertQuery);
+};
+
+export const deleteTaskItem = async (db: SQLiteDatabase, id: number) => {
+  const deleteQuery = `DELETE from ${tableName} where id = ${id}`;
   await db.executeSql(deleteQuery);
 };
 

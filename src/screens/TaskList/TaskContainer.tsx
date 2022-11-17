@@ -9,6 +9,7 @@ import {
   getDBConnection,
   createTable,
   getTaskItems,
+  deleteTaskItem,
 } from '../../sqlite/db-service';
 import ListEmptyComponent from './components/ListEmptyComponent';
 
@@ -41,13 +42,22 @@ const TaskContainer = ({}) => {
     }
   };
 
+  const deleteTask = async (id: number) => {
+    try {
+      const db = await getDBConnection();
+      await deleteTaskItem(db, id);
+      loadDataCallback();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const renderItem: ListRenderItem<TaskProps> = ({item}) => {
-    //console.log('item ', item);
     return (
       <TaskListItem
         item={item}
-        onPressDelete={() => {}}
-        onPressUpdate={() => navigation.navigate('UpdateTask')}
+        onPressDelete={deleteTask}
+        onPressUpdate={() => navigation.navigate('UpdateTask', {item})}
       />
     );
   };
