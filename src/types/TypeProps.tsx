@@ -3,11 +3,14 @@ export type AddIconProps = {
 };
 
 export type TaskListItemProps = {
+  item: TaskProps;
   onPressUpdate: () => void;
   onPressDelete: () => void;
 };
 
 export type TaskProps = {
+  id: string;
+  date: Date;
   title: string;
   description: string;
 };

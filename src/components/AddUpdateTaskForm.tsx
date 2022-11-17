@@ -14,15 +14,17 @@ const AddUpdateTaskForm: React.FC<AddUpdateTaskFormProps> = ({
   onButtonPress,
 }) => {
   const [taskInfo, setTaskInfo] = useState<TaskProps>({
+    id: '',
+    date: new Date(),
     title: '',
     description: '',
   });
 
   const onChangeText = (text: string, textFor: string): void => {
     if (textFor === 'title') {
-      setTaskInfo({...taskInfo, title: text});
+      setTaskInfo({...taskInfo, title: text, date: new Date()});
     } else {
-      setTaskInfo({...taskInfo, description: text});
+      setTaskInfo({...taskInfo, description: text, date: new Date()});
     }
   };
   console.log('taskInfo ', taskInfo);
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 5,
     backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'grey',
+    // borderWidth: 1,
+    // borderColor: 'grey',
     margin: 10,
     paddingHorizontal: 10,
   },

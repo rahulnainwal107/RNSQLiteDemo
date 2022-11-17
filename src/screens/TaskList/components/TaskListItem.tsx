@@ -4,15 +4,17 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {TaskListItemProps} from '../../../types/TypeProps';
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
+  item,
   onPressUpdate,
   onPressDelete,
 }) => {
+  const {date, title, description} = item;
   return (
     <View style={styles.mainContainer}>
       <View style={{padding: 10}}>
-        <Text style={styles.taskText}>Task title</Text>
-        <Text style={styles.taskDesc}>Task Description</Text>
-        <Text style={styles.taskDesc}>{new Date().toString()}</Text>
+        <Text style={styles.taskText}>{title}</Text>
+        <Text style={styles.taskDesc}>{description}</Text>
+        <Text style={styles.taskDesc}>{date.toString()}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button1} onPress={onPressUpdate}>
