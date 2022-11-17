@@ -7,7 +7,12 @@ export type TaskListItemProps = {
   onPressDelete: () => void;
 };
 
+export type TaskProps = {
+  title: string;
+  description: string;
+};
+
 export type AddUpdateTaskFormProps = {
   task: string;
-  //onButtonPress: () => void;
+  onButtonPress: (inputValue: TaskProps) => void;
 };

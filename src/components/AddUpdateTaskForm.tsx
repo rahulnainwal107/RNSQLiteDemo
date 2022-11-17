@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -7,20 +7,47 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import {AddUpdateTaskFormProps} from '../types/TypeProps';
+import {AddUpdateTaskFormProps, TaskProps} from '../types/TypeProps';
 
-const AddUpdateTaskForm: React.FC<AddUpdateTaskFormProps> = ({task}) => {
+const AddUpdateTaskForm: React.FC<AddUpdateTaskFormProps> = ({
+  task,
+  onButtonPress,
+}) => {
+  const [taskInfo, setTaskInfo] = useState<TaskProps>({
+    title: '',
+    description: '',
+  });
+
+  const onChangeText = (text: string, textFor: string): void => {
+    if (textFor === 'title') {
+      setTaskInfo({...taskInfo, title: text});
+    } else {
+      setTaskInfo({...taskInfo, description: text});
+    }
+  };
+  console.log('taskInfo ', taskInfo);
   return (
     <View>
-      <TextInput style={styles.textInputContainer} placeholder="Task title" />
+      <TextInput
+        style={styles.textInputContainer}
+        placeholder="Task title"
+        value={taskInfo.title}
+        autoCorrect={false}
+        onChangeText={text => onChangeText(text, 'title')}
+      />
       <TextInput
         style={styles.textInputContainer}
         placeholder="Task Description"
         multiline={true}
         numberOfLines={5}
+        autoCorrect={false}
         textAlignVertical="top"
+        value={taskInfo.description}
+        onChangeText={text => onChangeText(text, 'desc')}
       />
-      <TouchableOpacity style={styles.buttonStyle}>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={onButtonPress.bind(this, taskInfo)}>
         <Text style={styles.buttonTextStyle}>
           {task === 'update' ? 'Update' : 'Add'}
         </Text>

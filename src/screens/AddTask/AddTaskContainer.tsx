@@ -1,9 +1,14 @@
 import React from 'react';
 
 import AddUpdateTaskForm from '../../components/AddUpdateTaskForm';
+import {TaskProps} from '../../types/TypeProps';
 
 const AddTaskContainer = () => {
-  return <AddUpdateTaskForm task="add" />;
+  const onAddPress = (inputValues: TaskProps) => {
+    console.log('inputValues ', inputValues);
+  };
+
+  return <AddUpdateTaskForm task="add" onButtonPress={onAddPress} />;
 };
 
 export default AddTaskContainer;
